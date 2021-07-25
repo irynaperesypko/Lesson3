@@ -16,42 +16,58 @@ $firstArr = [
         'three' => 32,
         'foure' => 5,
         'five' => 12,
-        'ttt'=>[
+        'six' => [
             [
                 'three' => 32,
                 'foure' => 5,
                 'five' => 12,
-                'yyy'=>[
+                'seven' => [
                     [
-                        'three' => 1,
-                        'foure' => 1,
-                        'five' => 1,
-                    ],
-                ]
-            ],
-        ]
+                        'three' => 32,
+                        'foure' => 5,
+                        'five' => 12,
+                    ]
+                ]]
+        ],
     ],
+    'ten' => [
+        'three' => 32,
+        'foure' => 5,
+        'five' => 12,
+        'six' => [
+            [
+                'three' => 32,
+                'foure' => 5,
+                'five' => 12,
+                'seven' => [
+                    [
+                        'three' => 32,
+                        'foure' => 5,
+                        'five' => 12,
+                    ]
+                ]]
+        ],
+    ]
 ];
 
-echo "</br>";
-echo 'получить сумму всех значений в массиве ';
-function countSum(array $array)
+echo 'получить общее количество элементов в массиве ';
+
+function countItems(array $array)
 {
     $count = 0;
-    foreach ($array as $value => $item) {
-
-        if (is_array($item)) {
-            $count += countSum($item);
+    foreach ($array as $value) {
+        if (is_array($value)) {
+            $count += countItems($value);
         } else {
-            $count += $item;
+            $count++;
         }
     }
     return $count;
 }
-echo "<pre>";
-print_r($firstArr);
-echo "</pre>";
-echo countSum($firstArr);
+
+$res = countItems($firstArr);
+echo $res;
+
 
 
 
